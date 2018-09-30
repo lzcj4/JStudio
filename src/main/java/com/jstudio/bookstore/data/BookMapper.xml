@@ -2,17 +2,57 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.jstudio.bookstore.data.BookMapper">
-    <resultMap  id="bookResultMap" type="com.jstudio.bookstore.domain.Book">
-        <id column="id" property="id"/>
-        <result column="title" property="title"/>
+    <resultMap id="AuthorResultMap" type="com.jstudio.bookstore.domain.Author">
+        <id column="a_id" property="id"/>
+        <result column="a_name" property="name"/>
+        <result column="a_sex" property="sex"/>
+        <result column="a_address" property="address"/>
+        <result column="a_phone" property="phone"/>
     </resultMap>
 
-    <select id="listAll" resultMap="bookResultMap">
-		select * from t_book
+    <resultMap id="StoreResultMap" type="com.jstudio.bookstore.domain.Store">
+        <id column="s_id" property="id"/>
+        <result column="s_name" property="name"/>
+        <result column="s_address" property="address"/>
+        <result column="s_phone" property="phone"/>
+    </resultMap>
+
+    <resultMap id="bookResultMap" type="com.jstudio.bookstore.domain.Book">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <!--N+1问题，官方建议用一条SQL
+        <association property="author" column="author_id" select="getAuthorById"/>
+        <association property="store" column="store_id" select="getStoreById"/>
+        -->
+        <association property="author" column="author_id" resultMap="AuthorResultMap"/>
+        <association property="store" column="store_id" resultMap="StoreResultMap"/>
+    </resultMap>
+
+    <select id="getAuthorById" resultMap="com.jstudio.bookstore.data.AuthorMapper.AuthorResultMap">
+		select * from t_author where id=#{author_id}
+	</select>
+    <select id="getStoreById" resultMap="com.jstudio.bookstore.data.StoreMapper.StoreResultMap">
+		select * from t_store where id=#{store_id}
 	</select>
 
-    <insert id="add">
-	   insert into t_book(id, title) values(#{id},#{title})
+    <select id="getAll" resultMap="bookResultMap">
+		select B.*,
+		 A.id as a_id,A.name as a_name,A.sex as a_sex,A.address as a_address,A.phone as a_phone,
+		 S.id as s_id,S.name as s_name,S.address as s_address,S.phone as s_phone
+		from t_book as B,t_author as A,t_store as S
+		where B.author_id = A.id and B.store_id = S.id
+	</select>
+
+    <insert id="insert">
+	   insert into t_book(title,author_id,store_id) values(#{title},#{author.id},#{store.id})
 	</insert>
+
+    <update id="update">
+       update t_book set title=$title where id=#{id}
+    </update>
+
+    <delete id="delete">
+              delete from  t_book  where id=#{id}
+    </delete>
 
 </mapper>

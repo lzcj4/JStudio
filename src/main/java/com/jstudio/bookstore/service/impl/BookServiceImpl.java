@@ -16,11 +16,11 @@ public class BookServiceImpl implements IBookService {
 
     @Override
     public List<Book> list() {
-        return this.bookMapper.listAll();
+        return this.bookMapper.getAll();
     }
 
     @Override
     public int add(Book book) {
-        return this.bookMapper.add(book);
+        return this.bookMapper.insert(book);
     }
 }

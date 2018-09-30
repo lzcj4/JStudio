@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 
 @SpringBootApplication
 @EnableConfigurationProperties({AppConfig.class})
-@MapperScan("com.jstudio.bookstore.data")
+@MapperScan(value = "com.jstudio.bookstore.data")
 public class BookstoreApplication {
 
     public static void main(String[] args) {

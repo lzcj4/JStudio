@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.jstudio.bookstore.data.StoreMapper">
+    <resultMap id="StoreResultMap" type="com.jstudio.bookstore.domain.Store">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="address" property="address"/>
+        <result column="phone" property="phone"/>
+    </resultMap>
+
+
+    <select id="getAll" resultMap="StoreResultMap">
+		select * from t_store
+	</select>
+
+    <select id="getById" resultMap="StoreResultMap">
+		select * from t_store where id=#{author_id}
+	</select>
+
+    <insert id="insert">
+	   insert into t_store( name,) values(#{name},#{address},#{phone})
+	</insert>
+
+    <update id="update">
+       update t_store set name=#{name} where id=#{id}
+    </update>
+
+    <delete id="delete">
+              delete from  t_store  where id=#{id}
+    </delete>
+
+</mapper>

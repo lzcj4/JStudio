@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.jstudio.bookstore.data.AuthorMapper">
+    <resultMap id="AuthorResultMap" type="com.jstudio.bookstore.domain.Author">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="sex" property="sex"/>
+        <result column="address" property="address"/>
+        <result column="phone" property="phone"/>
+    </resultMap>
+
+    <select id="getAll" resultMap="AuthorResultMap">
+		select * from t_author
+	</select>
+
+    <select id="getById" resultMap="AuthorResultMap">
+		select * from t_author where id=#{author_id}
+	</select>
+
+    <insert id="insert">
+	   insert into t_author( name,sex,address,phone) values(#{name},#{sex},#{address},#{phone})
+	</insert>
+
+    <update id="update">
+       update t_author set name=#{title} where id=#{id}
+    </update>
+
+    <delete id="delete">
+              delete from  t_author  where id=#{id}
+    </delete>
+
+</mapper>

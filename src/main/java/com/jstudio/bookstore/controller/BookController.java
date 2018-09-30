@@ -6,10 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletRequest;
 import java.util.List;
@@ -26,14 +23,14 @@ public class BookController {
     IBookService bookService;
 
     @RequestMapping("/list")
+    @GetMapping
     public List<Book> list() {
         return bookService.list();
     }
 
-    @RequestMapping("/add")
+    @RequestMapping(value = "/add")
+    @PostMapping(value = "/add")
     public Book add(@RequestBody Book book) {
-//        Book book = new Book();
-//        book.setTitle("Book B");
         int id = bookService.add(book);
         return book;
     }
