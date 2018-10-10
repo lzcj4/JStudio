@@ -10,9 +10,12 @@ import java.util.List;
 
 @Service
 public class BookServiceImpl implements IBookService {
+    BookMapper bookMapper;
 
     @Autowired
-    BookMapper bookMapper;
+    public BookServiceImpl(BookMapper bookMapper) {
+        this.bookMapper = bookMapper;
+    }
 
     @Override
     public List<Book> list() {

@@ -4,6 +4,7 @@ import com.jstudio.bookstore.controller.BookController;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -11,13 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Configuration
-public class WebConfigurerAdapter extends WebMvcConfigurerAdapter {
+public class WebConfigurerAdapter extends WebMvcConfigurationSupport {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         super.addInterceptors(registry);
         registry.addInterceptor(new WebConfigurerAdapter.RequestInterceptor());
     }
-
 
     private static class RequestInterceptor extends HandlerInterceptorAdapter {
         public RequestInterceptor() {
