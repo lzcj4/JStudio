@@ -51,9 +51,10 @@ public class BookController {
     @PostMapping(value = "/upload")
     public HttpResult<String> upload(@RequestParam("file") MultipartFile file, @RequestParam("text") String txt) {
         try {
-            File rootFile = FileUtil.getRootFolder(appConfig.getUploadRootPath());
+            FileUtil.getInstance();
             String newPath = appConfig.getUploadRootPath() + file.getOriginalFilename();
             file.transferTo(new File(newPath));
+
 //            FileUtil.saveFile(file.getInputStream(), appConfig.getUploadRootPath());
         } catch (IOException e) {
             e.printStackTrace();

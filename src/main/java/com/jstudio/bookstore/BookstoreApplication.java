@@ -8,7 +8,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 import javax.sql.DataSource;
 
@@ -18,7 +23,7 @@ import javax.sql.DataSource;
 public class BookstoreApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BookstoreApplication.class, args);
+        ConfigurableApplicationContext contxt = SpringApplication.run(BookstoreApplication.class, args);
     }
 
     @Autowired
@@ -26,7 +31,8 @@ public class BookstoreApplication {
     AppConfig config;
 
     @Bean(destroyMethod = "close")
-    public DataSource getDataSoruce() {
+    @Primary
+    public DruidDataSource getDataSource() {
         DruidDataSource dataSource = new DruidDataSource();
         dataSource.setUrl(config.getConnUrl());
         dataSource.setUsername(config.getUser());
