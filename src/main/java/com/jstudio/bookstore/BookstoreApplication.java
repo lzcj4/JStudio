@@ -12,6 +12,8 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 
+import java.util.Arrays;
+
 @SpringBootApplication
 @EnableConfigurationProperties({AppConfig.class})
 @MapperScan(value = "com.jstudio.bookstore.data")
@@ -19,7 +21,8 @@ public class BookstoreApplication {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext contxt = SpringApplication.run(BookstoreApplication.class, args);
-        String s = "11";
+        String s = "21";
+//        Arrays.stream((new String[]{"1", "2"})).parallel().
     }
 
     @Autowired
