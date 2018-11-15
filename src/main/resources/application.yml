@@ -16,7 +16,7 @@ spring:
     prefix: classpath:/templates/
     suffix: .html
     encoding: UTF-8
-    mode: HTML5
+    mode: HTML
     servlet:
       content-type: text/html
 

@@ -9,21 +9,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class BookServiceImpl implements IBookService {
-    BookMapper bookMapper;
-
+public class BookServiceImpl extends AbstractServiceImpl<Book>
+        implements IBookService {
     @Autowired
     public BookServiceImpl(BookMapper bookMapper) {
-        this.bookMapper = bookMapper;
-    }
-
-    @Override
-    public List<Book> list() {
-        return this.bookMapper.getAll();
-    }
-
-    @Override
-    public int add(Book book) {
-        return this.bookMapper.insert(book);
+        super(bookMapper);
     }
 }

@@ -18,6 +18,7 @@ public interface IMapper<T> {
     int update(T item);
 
     List<T> getAll();
+
     T getById();
 
 }
