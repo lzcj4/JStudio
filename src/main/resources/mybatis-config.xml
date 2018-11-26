@@ -8,6 +8,6 @@
     </settings>
     <!-- 将包内的映射器接口实现全部注册为映射器 -->
     <mappers>
-        <package name="com.jstudio.bookstore.data"/>
+        <package name="com.jstudio.bookstore.mapper"/>
     </mappers>
 </configuration>

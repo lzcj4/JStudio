@@ -1,4 +1,4 @@
-package com.jstudio.bookstore.controller.API;
+package com.jstudio.bookstore.controller.api;
 
 import com.jstudio.bookstore.config.AppConfig;
 import com.jstudio.bookstore.domain.Book;
@@ -38,7 +38,7 @@ public class BookAPIController {
     }
 
     @PostMapping(value = "/add")
-    public HttpResult<Book> add(@ModelAttribute Book book,@RequestBody String author_name) {
+    public HttpResult<Book> add(@ModelAttribute Book book) {
         int id = bookService.add(book);
         book.setId(id);
         HttpResult<Book> result = new HttpResult<>();

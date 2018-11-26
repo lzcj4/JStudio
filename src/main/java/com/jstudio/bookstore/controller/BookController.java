@@ -1,6 +1,7 @@
 package com.jstudio.bookstore.controller;
 
 import com.jstudio.bookstore.config.AppConfig;
+import com.jstudio.bookstore.controller.api.BookAPIController;
 import com.jstudio.bookstore.domain.Book;
 import com.jstudio.bookstore.domain.HttpResult;
 import com.jstudio.bookstore.service.IAuthorService;
@@ -29,7 +30,8 @@ import java.util.List;
 @RequestMapping("book")
 public class BookController {
     private Logger logger = LoggerFactory.getLogger(BookController.class);
-
+    @Autowired
+    BookAPIController apiController;
     @Autowired
     IBookService bookService;
     @Autowired
@@ -42,9 +44,7 @@ public class BookController {
 
     @GetMapping("/list")
     public String list(ModelMap modelMap) {
-        HttpResult<List<Book>> result = new HttpResult<>();
-        result.setData(bookService.list());
-        modelMap.addAttribute("books", bookService.list());
+        modelMap.addAttribute("books", apiController.list().getData());
         return "book/list";
     }
 

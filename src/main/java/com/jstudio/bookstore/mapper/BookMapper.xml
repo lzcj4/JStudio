@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="com.jstudio.bookstore.data.BookMapper">
+<mapper namespace="com.jstudio.bookstore.mapper.BookMapper">
     <resultMap id="AuthorResultMap" type="com.jstudio.bookstore.domain.Author">
         <id column="a_id" property="id"/>
         <result column="a_name" property="name"/>
@@ -28,10 +28,10 @@
         <association property="store" column="store_id" resultMap="StoreResultMap"/>
     </resultMap>
 
-    <select id="getAuthorById" resultMap="com.jstudio.bookstore.data.AuthorMapper.AuthorResultMap">
+    <select id="getAuthorById" resultMap="com.jstudio.bookstore.mapper.AuthorMapper.AuthorResultMap">
 		select * from t_author where id=#{author_id}
 	</select>
-    <select id="getStoreById" resultMap="com.jstudio.bookstore.data.StoreMapper.StoreResultMap">
+    <select id="getStoreById" resultMap="com.jstudio.bookstore.mapper.StoreMapper.StoreResultMap">
 		select * from t_store where id=#{store_id}
 	</select>
 

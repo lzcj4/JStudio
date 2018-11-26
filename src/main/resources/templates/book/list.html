@@ -2,13 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>List</title>
+    <title>Book List</title>
 </head>
 <body>
 
-<table>
+<table border="red">
+    <thead th:border="1">
+    <tr th:width="100" >书名</tr>
+    <tr th:width="100">作者</tr>
+    <tr th:width="100">仓库</tr>
+    </thead>
     <tr th:each="b:${books}">
-        <td th:text="${b.Title}"/>
+        <td th:text="${b.title}"/>
+        <td th:text="${b.author.name}"/>
+        <td th:text="${b.store.name}"/>
     </tr>
 </table>
 

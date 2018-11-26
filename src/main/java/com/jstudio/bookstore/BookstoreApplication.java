@@ -2,6 +2,7 @@ package com.jstudio.bookstore;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.jstudio.bookstore.config.AppConfig;
+import com.jstudio.bookstore.util.LocaleResolver;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,7 +17,7 @@ import java.util.Arrays;
 
 @SpringBootApplication
 @EnableConfigurationProperties({AppConfig.class})
-@MapperScan(value = "com.jstudio.bookstore.data")
+@MapperScan(value = "com.jstudio.bookstore.mapper")
 public class BookstoreApplication {
 
     public static void main(String[] args) {
@@ -46,5 +47,10 @@ public class BookstoreApplication {
         dataSource.setTestWhileIdle(true);
         dataSource.setPoolPreparedStatements(false);
         return dataSource;
+    }
+
+    @Bean
+    public LocaleResolver localeResolver(){
+        return new LocaleResolver();
     }
 }

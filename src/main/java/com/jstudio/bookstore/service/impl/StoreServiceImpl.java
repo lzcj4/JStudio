@@ -1,6 +1,6 @@
 package com.jstudio.bookstore.service.impl;
 
-import com.jstudio.bookstore.data.StoreMapper;
+import com.jstudio.bookstore.mapper.StoreMapper;
 import com.jstudio.bookstore.domain.Store;
 import com.jstudio.bookstore.service.IStoreService;
 import org.springframework.beans.factory.annotation.Autowired;
