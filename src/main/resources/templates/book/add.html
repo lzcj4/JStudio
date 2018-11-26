@@ -9,7 +9,7 @@
 <form th:action="@{/book/api/add}" method="post" class="form-horizontal" th:object="${book}">
     <input type="hidden" name="id" th:value="*{id}"/>
     <div class="form-group">
-        <label for="aa" class="col-sm-2 control-label">名称</label>
+        <label for="aa" class="col-sm-2 control-label" th:text="#{book.name}">名称</label>
         <div class="col-xs-4">
             <input type="text" class="form-control" id="aa" name="title"
                    th:value="*{title}"/>

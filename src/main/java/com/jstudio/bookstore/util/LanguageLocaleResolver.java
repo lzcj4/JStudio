@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Locale;
 
-public class LocaleResolver implements org.springframework.web.servlet.LocaleResolver {
+public class LanguageLocaleResolver implements org.springframework.web.servlet.LocaleResolver {
     @Override
     public Locale resolveLocale(HttpServletRequest request) {
         String l = request.getParameter("l");
