@@ -24,6 +24,11 @@ public abstract class AbstractServiceImpl<T> implements IServiceBase<T> {
     }
 
     @Override
+    public T getById(long id) {
+        return this.mapper.getById(id);
+    }
+
+    @Override
     public int update(T item) {
         return this.mapper.update(item);
     }

@@ -38,7 +38,7 @@ public class BookAPIController {
     }
 
     @PostMapping(value = "/add")
-    public HttpResult<Book> add(@ModelAttribute Book book) {
+    public HttpResult<Book> add(@RequestBody Book book) {
         int id = bookService.add(book);
         book.setId(id);
         HttpResult<Book> result = new HttpResult<>();

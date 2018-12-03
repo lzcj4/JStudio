@@ -35,6 +35,15 @@
 		select * from t_store where id=#{store_id}
 	</select>
 
+    <select id="getById" resultMap="bookResultMap">
+		select B.*,
+		 A.id as a_id,A.name as a_name,A.sex as a_sex,A.address as a_address,A.phone as a_phone,
+		 S.id as s_id,S.name as s_name,S.address as s_address,S.phone as s_phone
+		from t_book as B,t_author as A,t_store as S
+		where B.author_id = A.id and B.store_id = S.id and
+		      B.id=#{id}
+	</select>
+
     <select id="getAll" resultMap="bookResultMap">
 		select B.*,
 		 A.id as a_id,A.name as a_name,A.sex as a_sex,A.address as a_address,A.phone as a_phone,

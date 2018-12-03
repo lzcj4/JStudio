@@ -13,6 +13,6 @@ public interface IMapper<T> {
 
     List<T> getAll();
 
-    T getById();
+    T getById(long id);
 
 }

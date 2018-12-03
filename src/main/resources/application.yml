@@ -18,9 +18,11 @@ spring:
     encoding: UTF-8
     cache-duration: 3600
 
-  devtools:
-    restart:
-      enabled: true
+#热部署 但已改为 JReble
+#  devtools:
+#    restart:
+#      enabled: true
+#      additional-paths: src/main
 
   thymeleaf:
     cache: false
